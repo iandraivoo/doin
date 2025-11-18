@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Efeito Café</title>
+
+<style>
+    body {
+        background: #f5efe6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        padding-top: 50px;
+    }
+
+    #coffee-icon {
+        font-size: 60px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    #coffee-icon:hover {
+        transform: scale(1.2);
+    }
+
+    #image-container, #button-container, #name-container {
+        margin-top: 20px;
+        display: none;
+        text-align: center;
+    }
+
+    #name-letter {
+        font-size: 40px;
+        font-weight: bold;
+        color: #6b3e2e;
+        letter-spacing: 3px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 8px;
+        border: none;
+        background: #6b3e2e;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #4e2d22;
+    }
+</style>
+</head>
+<body>
+
+    <!-- Ícone da xícara -->
+    <div id="coffee-icon">☕</div>
+
+    <!-- Imagem que aparece -->
+    <div id="image-container">
+        <img src="odin.jpeg" width="180">
+    </div>
+
+    <!-- Botão que aparece -->
+    <div id="button-container">
+        <button id="show-name-btn">Clique Aqui</button>
+    </div>
+
+    <!-- Letras aparecendo -->
+    <div id="name-container">
+        <div id="name-letter"></div>
+    </div>
+
+<script>
+    const coffeeIcon = document.getElementById("coffee-icon");
+    const imageContainer = document.getElementById("image-container");
+    const buttonContainer = document.getElementById("button-container");
+    const nameContainer = document.getElementById("name-container");
+    const nameLetter = document.getElementById("name-letter");
+    const showNameBtn = document.getElementById("show-name-btn");
+
+    // 1. Ao clicar na xícara → mostrar imagem e botão
+    coffeeIcon.addEventListener("click", () => {
+        imageContainer.style.display = "block";
+
+        setTimeout(() => {
+            buttonContainer.style.display = "block";
+        }, 600);
+    });
+
+    // 2. Ao clicar no botão → mostrar letras uma por uma
+    showNameBtn.addEventListener("click", () => {
+        const name = "Aceita um Cafézinho?"; // <<< AQUI você coloca o nome que quiser!!
+        nameLetter.innerHTML = "";
+        nameContainer.style.display = "block";
+
+        let i = 0;
+        const interval = setInterval(() => {
+            nameLetter.innerHTML += name[i];
+            i++;
+
+            if (i === name.length) {
+                clearInterval(interval);
+            }
+        }, 300); // tempo entre as letras
+    });
+</script>
+
+</body>
+</html>
